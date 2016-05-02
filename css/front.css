@@ -1,0 +1,34 @@
+.easy-cta-banner {
+	text-align: center;
+	padding: 5px;
+	position: relative;
+	width: 100%;
+}
+
+.easy-cta-banner a.ectabw-link {
+	display: block;
+	width: 100%;
+	height: 100%;
+	max-width: 100%;
+	position: relative;
+	text-decoration: none;
+}
+
+.easy-cta-banner-inside {
+    border: 1px solid #fff;
+    padding: 15% 5%;
+}
+
+.easy-cta-banner-text {
+	color: #fff;
+	font-family: Montserrat, "Helvetica Neue", sans-serif;
+	font-size: 18px;
+	font-size: 1.5rem;
+	letter-spacing: 0.046875em;
+	line-height: 1.3125;
+	text-transform: uppercase;
+}
+
+.easy-cta-banner-text p:last-child {
+	margin: 0;
+}
