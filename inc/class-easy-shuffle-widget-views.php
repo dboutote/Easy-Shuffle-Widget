@@ -17,6 +17,53 @@ class Easy_Shuffle_Widget_Views
 {
 
 	private function __construct(){}
+	
+	
+	public static function comment( $item_obj, $item_type, $instance, $widget, $echo = true )
+	{
+		$item_id      = Easy_Shuffle_Widget_Utils::get_item_id( $instance, $item_type, $item_obj );
+		$item_class   = Easy_Shuffle_Widget_Utils::get_item_class( $instance, $item_type, $item_obj );		
+		$item_content = Easy_Shuffle_Widget_Utils::get_item_excerpt( $instance, $item_type, $item_obj );
+		$item_thumb   = Easy_Shuffle_Widget_Utils::get_item_image( $instance, $item_type, $item_obj );
+		
+		
+		#_debug( $item_id );
+		#_debug( $item_class );
+		#_debug( $item_content );
+		#_debug( $item_thumb );
+		
+		_debug( $item_obj );
+	}
+	
+	public static function user( $item_obj, $item_type, $instance, $widget, $echo = true )
+	{
+		$item_id      = Easy_Shuffle_Widget_Utils::get_item_id( $instance, $item_type, $item_obj );
+		$item_class   = Easy_Shuffle_Widget_Utils::get_item_class( $instance, $item_type, $item_obj );		
+		$item_content = Easy_Shuffle_Widget_Utils::get_item_excerpt( $instance, $item_type, $item_obj );
+		$item_thumb   = Easy_Shuffle_Widget_Utils::get_item_image( $instance, $item_type, $item_obj );	
+		
+		#_debug( $item_id );
+		#_debug( $item_class );
+		#_debug( $item_content );
+		#_debug( $item_thumb );
+		
+		_debug( $item_obj );
+	}
+	
+	public static function post( $item_obj, $item_type, $instance, $widget, $echo = true )
+	{		
+		$item_id      = Easy_Shuffle_Widget_Utils::get_item_id( $instance, $item_type, $item_obj );
+		$item_class   = Easy_Shuffle_Widget_Utils::get_item_class( $instance, $item_type, $item_obj );		
+		$item_content = Easy_Shuffle_Widget_Utils::get_item_excerpt( $instance, $item_type, $item_obj );
+		$item_thumb   = Easy_Shuffle_Widget_Utils::get_item_image( $instance, $item_type, $item_obj );	
+		
+		#_debug( $item_id );
+		#_debug( $item_class );
+		#_debug( $item_content );
+		#_debug( $item_thumb );
+		
+		_debug( $item_obj );
+	}
 
 
 	/**
