@@ -39,6 +39,9 @@ class Easy_Shuffle_Widget_Utils
 	public static $base_file = EASY_SHUFFLE_WIDGET_FILE;
 
 
+	private function __construct(){}
+
+
 	/**
 	 * Generates path to plugin root
 	 *
@@ -194,7 +197,8 @@ class Easy_Shuffle_Widget_Utils
 	 */
 	public static function sample_excerpt()
 	{
-		$excerpt = __( 'The point of the foundation is to ensure free access, in perpetuity, to the software projects we support. People and businesses may come and go, so it is important to ensure that the source code for these projects will survive beyond the current contributor base, that we may create a stable platform for web publishing for generations to come. As part of this mission, the Foundation will be responsible for protecting the WordPress, WordCamp, and related trademarks. A 501(c)3 non-profit organization, the WordPress Foundation will also pursue a charter to educate the public about WordPress and related open source software.');
+		$excerpt = __( 'The point of the foundation is to ensure free access, in perpetuity, to the software projects we support. People and businesses may come and go, so it is important to ensure that the source code for these projects will survive beyond the current contributor base, that we may create a stable platform for web publishing for generations to come. As part of this mission, the Foundation will be responsible for protecting the WordPress, WordCamp, and related trademarks. A 501(c)3 non-profit organization, the WordPress Foundation will also pursue a charter to educate the public about WordPress and related open source software.', 'easy-shuffle-widget' );
+		
 		return apply_filters( 'eshuflw_sample_excerpt', $excerpt );
 	}
 
@@ -835,9 +839,10 @@ class Easy_Shuffle_Widget_Utils
 	 *
 	 * @since 1.0
 	 *
-	 * @param object $term     Term object.
-	 * @param array  $instance Widget instance.
-	 * @param string $trim     Flag to trim by word or character.
+	 * @param array  $instance  Settings for the current Categories widget instance.
+	 * @param string $item_type Slug of the item type to retrieve; e.g., 'comment', 'post', 'user'.
+	 * @param object $item_obj  WP Object: comment, post, user.
+	 * @param string $trim      Flag to trim by word or character.
 	 *
 	 * @return string $text Filtered description.
 	 */
@@ -922,7 +927,21 @@ class Easy_Shuffle_Widget_Utils
 
 
 
-
+	/**
+	 * Generate list-item thumbnail/avatar
+	 *
+	 * Use 'eshuflw_item_class' filter to modify item classes before output.
+	 *
+	 * @access public
+	 *
+	 * @since 1.0
+	 *
+	 * @param array  $instance  Widget instance.
+	 * @param string $item_type Slug of the item type to retrieve; e.g., 'comment', 'post', 'user'.
+	 * @param object $item_obj  WP Object: comment, post, user.
+	 *
+	 * @return string $src Image element of either: post thumb, author avatar, commenter avatar.
+	 */
 	public static function get_item_image( $instance = array(), $item_type = 'post', $item_obj = '' )
 	{
 		if( empty( $item_obj ) ){
@@ -952,10 +971,10 @@ class Easy_Shuffle_Widget_Utils
 	 * @since 1.0
 	 *
 	 * @param string $item_type Slug of the item type to retrieve; e.g., 'comment', 'post', 'user'.
-	 * @param object $item_obj WP Object: comment, post, user.
-	 * @param array  $instance   Settings for the current Categories widget instance.
+	 * @param object $item_obj  WP Object: comment, post, user.
+	 * @param array  $instance  Settings for the current Categories widget instance.
 	 *
-	 * @return string $html Thumbnail html.
+	 * @return string $thumb `<img>` tag for the avatar|thumbnail. False on failure.
 	 */
 	public static function get_item_obj_image( $item_type = 'post', $item_obj = '', $instance = array() )
 	{
@@ -1006,13 +1025,6 @@ class Easy_Shuffle_Widget_Utils
 
 		return $thumb;
 	}
-
-
-
-
-
-
-
 
 
 

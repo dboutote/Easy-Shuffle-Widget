@@ -17,117 +17,70 @@ class Easy_Shuffle_Widget_Views
 {
 
 	private function __construct(){}
-	
-	
-	public static function comment( $item_obj, $item_type, $instance, $widget, $echo = true )
-	{
-		$item_id      = Easy_Shuffle_Widget_Utils::get_item_id( $instance, $item_type, $item_obj );
-		$item_class   = Easy_Shuffle_Widget_Utils::get_item_class( $instance, $item_type, $item_obj );		
-		$item_content = Easy_Shuffle_Widget_Utils::get_item_excerpt( $instance, $item_type, $item_obj );
-		$item_thumb   = Easy_Shuffle_Widget_Utils::get_item_image( $instance, $item_type, $item_obj );
-		
-		
-		#_debug( $item_id );
-		#_debug( $item_class );
-		#_debug( $item_content );
-		#_debug( $item_thumb );
-		
-		_debug( $item_obj );
-	}
-	
-	public static function user( $item_obj, $item_type, $instance, $widget, $echo = true )
-	{
-		$item_id      = Easy_Shuffle_Widget_Utils::get_item_id( $instance, $item_type, $item_obj );
-		$item_class   = Easy_Shuffle_Widget_Utils::get_item_class( $instance, $item_type, $item_obj );		
-		$item_content = Easy_Shuffle_Widget_Utils::get_item_excerpt( $instance, $item_type, $item_obj );
-		$item_thumb   = Easy_Shuffle_Widget_Utils::get_item_image( $instance, $item_type, $item_obj );	
-		
-		#_debug( $item_id );
-		#_debug( $item_class );
-		#_debug( $item_content );
-		#_debug( $item_thumb );
-		
-		_debug( $item_obj );
-	}
-	
-	public static function post( $item_obj, $item_type, $instance, $widget, $echo = true )
-	{		
-		$item_id      = Easy_Shuffle_Widget_Utils::get_item_id( $instance, $item_type, $item_obj );
-		$item_class   = Easy_Shuffle_Widget_Utils::get_item_class( $instance, $item_type, $item_obj );		
-		$item_content = Easy_Shuffle_Widget_Utils::get_item_excerpt( $instance, $item_type, $item_obj );
-		$item_thumb   = Easy_Shuffle_Widget_Utils::get_item_image( $instance, $item_type, $item_obj );	
-		
-		#_debug( $item_id );
-		#_debug( $item_class );
-		#_debug( $item_content );
-		#_debug( $item_thumb );
-		
-		_debug( $item_obj );
-	}
-
 
 	/**
 	 * Builds each list item for the current widget instance.
 	 *
-	 * Use 'ectabw_banner_html' filter to filter $html before output.
+	 * Use "eshuflw_{$item_type}_item_html" to filter to filter $html before output.
 	 *
 	 * @access public
 	 *
 	 * @since 1.0
 	 *
-	 * @param array  $instance   Settings for the current widget instance.
-	 * @param bool   $echo       Flag to echo or return the method's output.
+	 * @param object $item_obj  WP Object: comment, post, user.
+	 * @param string $item_type Slug of the item type to retrieve; e.g., 'comment', 'post', 'user'.
+	 * @param array  $instance  Settings for the current widget instance.
+	 * @param object $widget    WP Object: comment, post, user.
+	 * @param bool   $echo      Flag to echo or return the method's output.
 	 *
 	 * @return string $html Closing tag element for the list item.
 	 */
-	public static function item( $instance, $echo = true )
+	public static function item( $item_obj = '', $item_type = 'post', $instance = array(), $widget = '', $echo = true )
 	{
+		if ( empty( $item_obj ) ) {
+			return '';
+		}
 
-		_debug( $instance );
+		$item_id      = Easy_Shuffle_Widget_Utils::get_item_id( $instance, $item_type, $item_obj );
+		$item_class   = Easy_Shuffle_Widget_Utils::get_item_class( $instance, $item_type, $item_obj );
+		$item_excerpt = Easy_Shuffle_Widget_Utils::get_item_excerpt( $instance, $item_type, $item_obj );
+		$item_thumb   = Easy_Shuffle_Widget_Utils::get_item_image( $instance, $item_type, $item_obj );
 
-		$banner_text  = ( ! empty( $instance['banner_text'] ) ) ? $instance['banner_text'] : '' ;
-
-		$banner_color = ( ! empty( $instance['banner_color'] ) ) ?  esc_attr( $instance['banner_color'] ) : '#ff0000' ;
-		$text_color = ( ! empty( $instance['text_color'] ) ) ?  esc_attr( $instance['text_color'] ) : '#fff' ;
-
-		$banner_url   = ( ! empty( $instance['banner_url'] ) ) ?  esc_url( $instance['banner_url'] ) : '' ;
-		$banner_linked = ( ! empty( $instance['banner_linked'] ) && ! empty( $instance['banner_url'] ) ) ? true : false ;
-
-		$item_id    = Easy_Shuffle_Widget_Utils::get_item_id( $instance );
-		$item_class = Easy_Shuffle_Widget_Utils::get_item_class( $instance );
-		$item_style = Easy_Shuffle_Widget_Utils::get_item_style( $instance );
-
+		$thumb_div = ( ! empty( $instance['show_thumb'] ) )
+			? self::the_item_thumbnail_div( $item_thumb, $item_obj, $item_type, $instance, false )
+			: '' ;
+		$title_div = self::the_item_title_div( $item_obj, $item_type, $instance, false );
 
 		ob_start();
 
-		do_action( 'ectabw_item_before', $instance );
+		do_action( "eshuflw_{$item_type}_item_before", $item_obj, $item_type, $instance, $widget );
 		?>
-			<div id="banner-<?php echo $item_id ;?>" class="<?php echo $item_class ;?>" <?php echo $item_style; ?>>
 
-				<?php if( $banner_linked ) { ?><a class="ectabw-link" href="<?php echo $banner_url; ?>"> <?php }; ?>
+		<div id="div-<?php echo $item_type ;?>-<?php echo $item_id ;?>" class="<?php echo $item_class ;?>" data-item-type="<?php echo $item_type ;?>">
 
-					<?php do_action( 'ectabw_item_top', $instance ); ?>
+			<?php do_action( "eshuflw_{$item_type}_item_top", $item_obj, $item_type, $instance, $widget ); ?>
 
-					<div class="easy-cta-banner-inside">
-						<div class="easy-cta-banner-text" style="color:<?php echo $text_color;?>;">
-							<?php
-							$text = sprintf( __( '%s', 'advanced-categories-widget'), $banner_text );
-							echo wpautop( $text )
-							?>
-						</div>
-					</div>
+				<div class="eshuflw-item-header">
+					<?php echo $thumb_div; ?>
+					<?php echo $title_div; ?>
+				</div>
 
-					<?php do_action( 'ectabw_item_bottom', $instance ); ?>
+				<?php if( ! empty( $item_excerpt ) ) : ?>
+					<div class="eshuflw-item-summary">
+						<?php echo $item_excerpt; ?>
+					</div><!-- /.item-summary -->
+				<?php endif; ?>
 
-				<?php if( $banner_linked ) { ?> </a> <?php }; ?>
+			<?php do_action( "eshuflw_{$item_type}_item_bottom", $item_obj, $item_type, $instance, $widget ); ?>
 
-			</div><!-- #banner-## -->
+		</div> <!-- /#div-comment-## -->
+
 		<?php
-		do_action( 'ectabw_item_after', $instance );
+		do_action( "eshuflw_{$item_type}_item_after", $item_obj, $item_type, $instance, $widget );
 
 		$_html = ob_get_clean();
 
-		$html = apply_filters( 'ectabw_banner_html', $_html, $instance );
+		$html = apply_filters( "eshuflw_{$item_type}_item_html", $_html, $instance );
 
 		if( $echo ) {
 			echo $html;
@@ -135,6 +88,132 @@ class Easy_Shuffle_Widget_Views
 			return $html;
 		}
 	}
+
+
+	/**
+	 * Builds html for thumbnail section
+	 *
+	 * @access public
+	 *
+	 * @since 1.0
+	 *
+	 * @param string $item_thumb '<img>` tag for item thumbnail.
+	 * @param object $item_obj   WP Object: comment, post, user.
+	 * @param string $item_type  Slug of the item type to retrieve; e.g., 'comment', 'post', 'user'.
+	 * @param array  $instance   Settings for the current widget instance.
+	 * @param bool   $echo       Flag to echo or return the method's output.
+	 *
+	 * @return string $html Item thumbnail section.
+	 */
+	public static function the_item_thumbnail_div( $item_thumb = '', $item_obj = '', $item_type = 'post', $instance = array(), $echo = true )
+	{
+		if ( empty( $item_obj ) ) {
+			return '';
+		}
+
+		$_html = '';
+		$link_str = $item_thumb;
+
+		switch( $item_type ){
+			case 'comment' :
+				$url = get_comment_author_url( $item_obj );
+				$rel = 'nofollow';
+				break;
+			case 'user' :
+				$url = get_author_posts_url( $item_obj->ID );
+				$rel = 'author archive';
+				break;
+			default :
+				$url = get_permalink( $item_obj->ID );
+				$rel = 'bookmark';
+				break;
+		}
+
+		$_classes = array();
+		$_classes[] = 'eshuflw-item-thumbnail';
+
+		$classes = apply_filters( 'eshuflw_thumbnail_div_class', $_classes, $item_thumb, $item_obj, $item_type, $instance );
+		$classes = ( ! is_array( $classes ) ) ? (array) $classes : $classes ;
+		$classes = array_map( 'sanitize_html_class', $classes );
+
+		$class_str = implode( ' ', $classes );
+
+		if( '' !== $url ){
+			$link_str = sprintf('<a href="%s" rel="%s">%s</a>',
+				esc_url( $url ),
+				esc_attr( $rel ),
+				$item_thumb
+			);
+		}
+
+		if( '' !== $item_thumb ) {
+			$_html .= sprintf( '<span class="%1$s">%2$s</span>',
+				$class_str,
+				$link_str
+			);
+		};
+
+		$html = apply_filters( 'eshuflw_item_thumbnail_div', $_html, $item_thumb, $item_obj, $item_type, $instance );
+
+		if( $echo ) {
+			echo $html;
+		} else {
+			return $html;
+		}
+	}
+
+
+	/**
+	 * Builds html for title section
+	 *
+	 * @access public
+	 *
+	 * @since 1.0
+	 *
+	 * @param object $item_obj  WP Object: comment, post, user.
+	 * @param string $item_type Slug of the item type to retrieve; e.g., 'comment', 'post', 'user'.
+	 * @param array  $instance  Settings for the current widget instance.
+	 * @param bool   $echo      Flag to echo or return the method's output.
+	 *
+	 * @return string $html Item title section.
+	 */
+	public static function the_item_title_div( $item_obj = '', $item_type = 'post', $instance = array(), $echo = true )
+	{
+		if ( empty( $item_obj ) ) {
+			return '';
+		}
+
+		switch( $item_type ){
+			case 'comment' :
+				$_title = sprintf(
+					_x( '%1$s <span class="on">on</span> %2$s', 'widgets' ),
+					'<span class="comment-author eshuflw-comment-author">' . get_comment_author_link( $item_obj ) . '</span>',
+					'<span class="comment-link eshuflw-comment-link"><a class="comment-link eshuflw-comment-link" href="' . esc_url( get_comment_link( $item_obj ) ) . '">' . get_the_title( $item_obj->comment_post_ID ) . '</a></span>'
+					);
+				break;
+			case 'user' :
+				$_title = sprintf( '<h3 class="author-title eshuflw-author-title"><a href="%s" rel="author archive">%s</a></h3>',
+					esc_url( get_author_posts_url( $item_obj->ID ) ),
+					sprintf( __( '%s', 'easy-shuffle-widget' ), $item_obj->display_name )
+					);
+				break;
+			default :
+				$_title = sprintf( '<h3 class="entry-title eshuflw-entry-title"><a href="%s" rel="bookmark">%s</a></h3>',
+					esc_url( get_permalink( $item_obj ) ),
+					sprintf( __( '%s', 'easy-shuffle-widget' ), get_the_title( $item_obj ) )
+					);
+				break;
+		}
+
+		$html = apply_filters( 'eshuflw_item_thumbnail_div', $_title, $item_obj, $item_type, $instance );
+
+		if( $echo ) {
+			echo $html;
+		} else {
+			return $html;
+		}
+	}
+
 
 
 	/**

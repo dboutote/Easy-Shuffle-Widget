@@ -93,8 +93,6 @@ class Widget_Easy_Shuffle extends WP_Widget
 		} else {
 			$item_type = $selected_type;
 		}
-		
-		$item_type = 'comment';
 
 		// grab a random object (comment, user, post)
 		$item_obj = Easy_Shuffle_Widget_Utils::get_random_item_obj( $item_type, $instance, $this );
@@ -143,17 +141,7 @@ class Widget_Easy_Shuffle extends WP_Widget
 
 			do_action( 'eshuflw_before', $instance );
 
-			switch( $item_type ){
-				case 'comment' :
-					Easy_Shuffle_Widget_Views::comment( $item_obj, $item_type, $instance, $this );
-					break;
-				case 'user' :
-					Easy_Shuffle_Widget_Views::user( $item_obj, $item_type, $instance, $this );
-					break;
-				default :
-					Easy_Shuffle_Widget_Views::post( $item_obj, $item_type, $instance, $this );
-					break;
-			}
+			Easy_Shuffle_Widget_Views::item( $item_obj, $item_type, $instance, $this );
 
 			do_action( 'eshuflw_after', $instance );
 
