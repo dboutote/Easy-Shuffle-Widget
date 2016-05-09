@@ -39,7 +39,7 @@ class Widget_Easy_Shuffle extends WP_Widget
 	public function __construct()
 	{
 		$widget_options = array(
-			'classname'                   => 'widget_easy_shuffle easy-shuffle-widget',
+			'classname'                   => 'widget_easy_shuffle easy-shuffle-widget widgin-widget',
 			'description'                 => __( 'Display random content.' ),
 			'customize_selective_refresh' => true,
 			);
@@ -138,13 +138,13 @@ class Widget_Easy_Shuffle extends WP_Widget
 		<div class="easy-shuffle-widget easy-shuffle-wrap">
 
 			<?php
-
 			do_action( 'eshuflw_before', $instance );
 
-			Easy_Shuffle_Widget_Views::item( $item_obj, $item_type, $instance, $this );
+			if( ! empty( $item_obj ) ) {
+				Easy_Shuffle_Widget_Views::item( $item_obj, $item_type, $instance, $this );
+			}
 
 			do_action( 'eshuflw_after', $instance );
-
 			?>
 
 		</div><!-- /.easy-shuffle-wrap -->

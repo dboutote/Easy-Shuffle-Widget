@@ -146,16 +146,10 @@ a.widgin-action-indicator:after {
 	font-size: 1em;
 	margin: 1
 }
-
 /* widgin-defaults */
 
 
 
 #available-widgets [class*=easy-shuffle-widget] .widget-title:before {
 	content: "\f503";
-}
-.ectabw-banner-preview * {
-    -webkit-box-sizing: border-box;
-       -moz-box-sizing: border-box;
-            box-sizing: border-box;
 }

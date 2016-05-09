@@ -63,17 +63,18 @@ class Easy_Shuffle_Widget_Views
 				<div class="eshuflw-item-header">
 					<?php echo $thumb_div; ?>
 					<?php echo $title_div; ?>
+					<?php do_action( "eshuflw_{$item_type}_item_header", $item_obj, $item_type, $instance, $widget ); ?>
 				</div>
 
 				<?php if( ! empty( $item_excerpt ) ) : ?>
 					<div class="eshuflw-item-summary">
-						<?php echo $item_excerpt; ?>
+						<?php echo wpautop( $item_excerpt ); ?>
 					</div><!-- /.item-summary -->
 				<?php endif; ?>
 
 			<?php do_action( "eshuflw_{$item_type}_item_bottom", $item_obj, $item_type, $instance, $widget ); ?>
 
-		</div> <!-- /#div-comment-## -->
+		</div> <!-- /#div-$item_type-## -->
 
 		<?php
 		do_action( "eshuflw_{$item_type}_item_after", $item_obj, $item_type, $instance, $widget );
@@ -186,19 +187,19 @@ class Easy_Shuffle_Widget_Views
 		switch( $item_type ){
 			case 'comment' :
 				$_title = sprintf(
-					_x( '%1$s <span class="on">on</span> %2$s', 'widgets' ),
+					_x( '<span class="eshuflw-item-title eshuflw-comment-title">%1$s <span class="on">on</span> %2$s</span>', 'widgets' ),
 					'<span class="comment-author eshuflw-comment-author">' . get_comment_author_link( $item_obj ) . '</span>',
 					'<span class="comment-link eshuflw-comment-link"><a class="comment-link eshuflw-comment-link" href="' . esc_url( get_comment_link( $item_obj ) ) . '">' . get_the_title( $item_obj->comment_post_ID ) . '</a></span>'
 					);
 				break;
 			case 'user' :
-				$_title = sprintf( '<h3 class="author-title eshuflw-author-title"><a href="%s" rel="author archive">%s</a></h3>',
+				$_title = sprintf( '<h3 class="eshuflw-item-title eshuflw-author-title"><a href="%1$s" rel="author archive" title="View all posts by %2$s">%2$s</a></h3>',
 					esc_url( get_author_posts_url( $item_obj->ID ) ),
 					sprintf( __( '%s', 'easy-shuffle-widget' ), $item_obj->display_name )
 					);
 				break;
 			default :
-				$_title = sprintf( '<h3 class="entry-title eshuflw-entry-title"><a href="%s" rel="bookmark">%s</a></h3>',
+				$_title = sprintf( '<h3 class="eshuflw-item-title eshuflw-entry-title"><a href="%s" rel="bookmark">%s</a></h3>',
 					esc_url( get_permalink( $item_obj ) ),
 					sprintf( __( '%s', 'easy-shuffle-widget' ), get_the_title( $item_obj ) )
 					);

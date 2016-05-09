@@ -5,7 +5,7 @@
  *
  * All methods are static, this is basically a namespacing class wrapper.
  *
- * @package The_Whichit_Widget
+ * @package Easy_Shuffle_Widget
  * @subpackage Easy_Shuffle_Widget_Utils
  *
  * @since 1.0
@@ -198,7 +198,7 @@ class Easy_Shuffle_Widget_Utils
 	public static function sample_excerpt()
 	{
 		$excerpt = __( 'The point of the foundation is to ensure free access, in perpetuity, to the software projects we support. People and businesses may come and go, so it is important to ensure that the source code for these projects will survive beyond the current contributor base, that we may create a stable platform for web publishing for generations to come. As part of this mission, the Foundation will be responsible for protecting the WordPress, WordCamp, and related trademarks. A 501(c)3 non-profit organization, the WordPress Foundation will also pursue a charter to educate the public about WordPress and related open source software.', 'easy-shuffle-widget' );
-		
+
 		return apply_filters( 'eshuflw_sample_excerpt', $excerpt );
 	}
 
@@ -448,7 +448,6 @@ class Easy_Shuffle_Widget_Utils
 		$item = get_user_by( 'id', $id );
 
 		return $item;
-
 	}
 
 
@@ -486,7 +485,7 @@ class Easy_Shuffle_Widget_Utils
 			'cache_results'  => false,
 		);
 
-		$args = apply_filters( 'eshuflw_get_random_post_args', $args );
+		$args = apply_filters( 'eshuflw_get_random_post_args', $args, $post_type, $exclude_id, $instance, $widget );
 
 		$q = new WP_Query( $args );
 
@@ -595,7 +594,7 @@ class Easy_Shuffle_Widget_Utils
 	 * @since 1.0
 	 *
 	 * @param string $widget_id Widget instance ID.
-	 * @param array $shown_item The item object displayed.
+	 * @param array  $shown_item The item object displayed.
 	 */
 	public static function stick_item( $widget_id, $shown_item = array() )
 	{
@@ -608,7 +607,6 @@ class Easy_Shuffle_Widget_Utils
 		$widgets[ $widget_id ] = $shown_item ;
 
 		update_option('eshuflw_shown_items', $widgets);
-
 	}
 
 
@@ -810,6 +808,7 @@ class Easy_Shuffle_Widget_Utils
 		}
 
 		$_classes = array();
+		$_classes[] = 'widgin-item';
 		$_classes[] = 'eshuflw-item';
 		$_classes[] = $item_type;
 		$_classes[] = 'eshuflw-item-' . $item_type;
@@ -951,8 +950,6 @@ class Easy_Shuffle_Widget_Utils
 		$src = self::get_item_obj_image( $item_type, $item_obj, $instance );
 
 		return $src;
-
-
 	}
 
 

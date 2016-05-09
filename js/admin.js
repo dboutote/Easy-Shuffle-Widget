@@ -34,7 +34,6 @@ if( "undefined" == typeof jQuery )throw new Error( "Easy Shuffle Widget requires
 	}
 
 
-
 	/**
 	 * Updates thumbnail preview
 	 *
@@ -116,10 +115,10 @@ if( "undefined" == typeof jQuery )throw new Error( "Easy Shuffle Widget requires
 }( window.widgin = window.widgin || {}, jQuery ) );
 
 
-
 ( function ( $ ) {
 
     'use strict';
+
 
 	/**
 	 * Accordion functions
@@ -128,28 +127,23 @@ if( "undefined" == typeof jQuery )throw new Error( "Easy Shuffle Widget requires
 	 */
 	$( document ).on( 'widget-added widget-updated', widgin.accordion_form_update );
 
-	$( document ).ready( function() {
-
-		$( '#widgets-right .widget:has( .widgin-widget-form )' ).each( function () {
-			widgin.close_accordions( $( this ) );
-		} );
-
-		$( '#widgets-right, #accordion-panel-widgets' ).on( 'click', '.widgin-section-top', function( e ){
-			var header = $( this );
-			var section = header.closest( '.widgin-section' );
-			var fieldset_id = header.data( 'fieldset' );
-			var target_fieldset = $( 'fieldset[data-fieldset-id="' + fieldset_id + '"]', section );
-			var content = section.find( '.widgin-settings' )
-
-			header.toggleClass( 'widgin-active' );
-			target_fieldset.addClass( 'targeted');
-			content.slideToggle( 300, function () {
-				section.toggleClass( 'expanded' );
-			});
-		});
-
+	$( '#widgets-right .widget:has( .widgin-widget-form )' ).each( function () {
+		widgin.close_accordions( $( this ) );
 	} );
 
+	$( '#widgets-right, #accordion-panel-widgets' ).on( 'click', '.widgin-section-top', function( e ) {
+		var header = $( this );
+		var section = header.closest( '.widgin-section' );
+		var fieldset_id = header.data( 'fieldset' );
+		var target_fieldset = $( 'fieldset[data-fieldset-id="' + fieldset_id + '"]', section );
+		var content = section.find( '.widgin-settings' )
+
+		header.toggleClass( 'widgin-active' );
+		target_fieldset.addClass( 'targeted');
+		content.slideToggle( 300, function () {
+			section.toggleClass( 'expanded' );
+		});
+	});
 
 
 	/**
@@ -160,30 +154,25 @@ if( "undefined" == typeof jQuery )throw new Error( "Easy Shuffle Widget requires
 
 	$( document ).on( 'widget-added widget-updated', widgin.thumbnail_form_update );
 
-	$( document ).ready( function() {
+	// Change thumb size when form field changes
+	$( '#customize-controls, #wpcontent' ).on( 'change', '.widgin-thumb-size', function ( e ) {
+		var widget = $(this).closest('.widget');
+		widgin.update_thumbnail_preview( widget );
+		return;
+	});
 
-		// Change thumb size when form field changes
-		$( '#customize-controls, #wpcontent' ).on( 'change', '.widgin-thumb-size', function ( e ) {
-			var widget = $(this).closest('.widget');
+	// Change thumb size as user types
+	$( '#customize-controls, #wpcontent' ).on( 'keyup', '.widgin-thumb-size', function ( e ) {
+		var widget = $(this).closest('.widget');
+		setTimeout( function(){
 			widgin.update_thumbnail_preview( widget );
-			return;
-		});
+		}, 300 );
+		return;
+	});
 
-		// Change thumb size as user types
-		$( '#customize-controls, #wpcontent' ).on( 'keyup', '.widgin-thumb-size', function ( e ) {
-			var widget = $(this).closest('.widget');
-			setTimeout( function(){
-				widgin.update_thumbnail_preview( widget );
-			}, 300 );
-			return;
-		});
-
-		$( '#widgets-right .widget:has( .widgin-thumbnail-preview )' ).each( function () {
-			widgin.update_thumbnail_preview( $(this) );
-		} );
-
-	} );
-
+	$( '#widgets-right .widget:has( .widgin-thumbnail-preview )' ).each( function () {
+		widgin.update_thumbnail_preview( $(this) );
+	});
 
 
 	/**
@@ -194,28 +183,25 @@ if( "undefined" == typeof jQuery )throw new Error( "Easy Shuffle Widget requires
 
 	$( document ).on( 'widget-added widget-updated', widgin.excerpt_form_update );
 
-	$( document ).ready( function() {
+	// Change excerpt size when form field changes
+	$( '#customize-controls, #wpcontent' ).on( 'change', '.widgin-excerpt-length', function ( e ) {
+		var widget = $(this).closest('.widget');
+		widgin.update_excerpt_preview( widget );
+		return;
+	});
 
-		// Change excerpt size when form field changes
-		$( '#customize-controls, #wpcontent' ).on( 'change', '.widgin-excerpt-length', function ( e ) {
-			var widget = $(this).closest('.widget');
+	// Change excerpt size as user types
+	$( '#customize-controls, #wpcontent' ).on( 'keyup', '.widgin-excerpt-length', function ( e ) {
+		var widget = $(this).closest('.widget');
+		setTimeout( function(){
 			widgin.update_excerpt_preview( widget );
-			return;
-		});
+		}, 300 );
+		return;
+	});
 
-		// Change excerpt size as user types
-		$( '#customize-controls, #wpcontent' ).on( 'keyup', '.widgin-excerpt-length', function ( e ) {
-			var widget = $(this).closest('.widget');
-			setTimeout( function(){
-				widgin.update_excerpt_preview( widget );
-			}, 300 );
-			return;
-		});
+	$( '#widgets-right .widget:has( .widgin-excerpt-preview )' ).each( function () {
+		widgin.update_excerpt_preview( $(this) );
+	});
 
-		$( '#widgets-right .widget:has( .widgin-excerpt-preview )' ).each( function () {
-			widgin.update_excerpt_preview( $(this) );
-		} );
 
-	} );
-
-}(jQuery) );
+}( jQuery ) );

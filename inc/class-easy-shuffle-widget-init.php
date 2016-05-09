@@ -88,7 +88,7 @@ class Easy_Shuffle_Widget_Init
 	 * @see Easy_Shuffle_Widget_Init::init_widget()
 	 * @see Easy_Shuffle_Widget_Init::init_admin_scripts_and_styles()
 	 * @see Easy_Shuffle_Widget_Init::store_css_option()
-	 * @see Easy_Shuffle_Widget_Init::init_css_option()
+	 * @see Easy_Shuffle_Widget_Init::init_front_styles()
 	 *
 	 * @access public
 	 *
@@ -99,7 +99,9 @@ class Easy_Shuffle_Widget_Init
 		$this->init_widget();
 		$this->init_admin_scripts_and_styles();
 		$this->store_css_option();
-		$this->init_css_option();
+		$this->init_front_styles();
+		$this->init_del_options();
+
 	}
 
 
@@ -293,7 +295,7 @@ class Easy_Shuffle_Widget_Init
 	 *
 	 * @since 1.0
 	 */
-	public function init_css_option()
+	public function init_front_styles()
 	{
 		add_action( 'wp_enqueue_scripts', array( $this, 'front_styles' ) );
 	}
@@ -328,7 +330,50 @@ class Easy_Shuffle_Widget_Init
 		if( $enqueue ) {
 			wp_enqueue_style( 'eshuflw-css-defaults', $this->url . 'css/front.css', null, null );
 		}
+	}
 
-	}	
+
+	/**
+	 * Calls to delete widget options on widget delete
+	 *
+	 * @see Easy_Shuffle_Widget_Init::delete_widget_options()
+	 *
+	 * @access public
+	 *
+	 * @since 1.0
+	 */
+	public function init_del_options()
+	{
+		add_action( 'delete_widget', array( $this, 'delete_widget_options' ), 0, 3 );
+	}
+
+
+	/**
+	 * Unsticks/removes widget options when widget is deleted
+	 *
+	 * @access public
+	 *
+	 * @since 1.0
+	 *
+	 * @param string $widget_id  ID of the widget marked for deletion.
+	 * @param string $sidebar_id ID of the sidebar the widget was deleted from.
+	 * @param string $id_base    ID base for the widget.
+	 */
+	public function delete_widget_options( $widget_id = 0, $sidebar_id = '', $id_base = '' )
+	{
+		// if there's no widget, bail
+		if( ! $widget_id ) {
+			return;
+		}
+
+		global $wp_registered_widgets;
+
+		if ( ! isset( $wp_registered_widgets[$widget_id] ) ) {
+			return;
+		}
+
+		Easy_Shuffle_Widget_Utils::unstick_item( $widget_id );
+		Easy_Shuffle_Widget_Utils::unstick_css( $widget_id );
+	}
 
 }
