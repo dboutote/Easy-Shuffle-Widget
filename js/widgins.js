@@ -4,7 +4,7 @@
  * @package Widgins
  * @since 1.0.0
  */
- 
+
 /* global jQuery */
 
 if( "undefined" == typeof jQuery )throw new Error( "Widgins JS requires jQuery" );

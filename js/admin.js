@@ -19,7 +19,7 @@ if ( "undefined" === typeof widgin ) { throw new Error( "Easy Shuffle Widget req
 	 *
 	 * @since 1.0.0
 	 */
-	$( document ).on( 'widget-added widget-updated', widgin.accordion_form_update );	
+	$( document ).on( 'widget-added widget-updated', widgin.accordion_form_update );
 
 	$( '#widgets-right .widget:has( .widgin-widget-form )' ).each( function () {
 		widgin.close_accordions( $( this ) );

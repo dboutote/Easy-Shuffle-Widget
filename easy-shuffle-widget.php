@@ -43,7 +43,7 @@ function _easy_shuffle_widget_init() {
 	include dirname( __FILE__ ) . '/inc/class-widget-easy-shuffle.php';
 	include dirname( __FILE__ ) . '/inc/class-easy-shuffle-widget-views.php';
 	include dirname( __FILE__ ) . '/inc/class-easy-shuffle-widget-init.php';
-	
+
 	$Easy_Shuffle_Widget_Init = new Easy_Shuffle_Widget_Init( __FILE__ );
 	$Easy_Shuffle_Widget_Init->init();
 

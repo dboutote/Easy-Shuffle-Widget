@@ -17,7 +17,7 @@
 	<div class="widgin-widget-form">
 
 		<div class="widgin-section">
-		
+
 			<?php echo Easy_Shuffle_Widget_Fields::build_section_header( $fieldset = 'general', $title = 'General Settings', $instance, $this ); ?>
 
 			<fieldset data-fieldset-id="general" class="widgin-settings widgin-fieldset settings-general">
@@ -35,11 +35,11 @@
 				?>
 
 			</fieldset>
-			
+
 		</div><!-- /.widgin-section -->
-		
+
 		<div class="widgin-section">
-		
+
 			<?php echo Easy_Shuffle_Widget_Fields::build_section_header( $fieldset = 'thumbnails', $title = 'Thumbnails/Avatars', $instance, $this ); ?>
 
 			<fieldset data-fieldset-id="thumbnails" class="widgin-settings widgin-fieldset settings-thumbnails">
@@ -56,12 +56,12 @@
 				Easy_Shuffle_Widget_Fields::load_fieldset( 'thumbnails', $thumbnail_fields, $instance, $this );
 				?>
 			</fieldset>
-		
+
 		</div><!-- /.widgin-section -->
-			
+
 		<div class="widgin-section">
-		
-			<?php echo Easy_Shuffle_Widget_Fields::build_section_header( $fieldset = 'excerpts', $title = 'Excerpts', $instance, $this ); ?>		
+
+			<?php echo Easy_Shuffle_Widget_Fields::build_section_header( $fieldset = 'excerpts', $title = 'Excerpts', $instance, $this ); ?>
 
 			<fieldset data-fieldset-id="excerpts" class="widgin-settings widgin-fieldset settings-excerpts">
 
@@ -76,12 +76,12 @@
 				Easy_Shuffle_Widget_Fields::load_fieldset( 'excerpts', $excerpt_fields, $instance, $this );
 				?>
 			</fieldset>
-			
+
 		</div><!-- /.widgin-section -->
-			
+
 		<div class="widgin-section">
-		
-			<?php echo Easy_Shuffle_Widget_Fields::build_section_header( $fieldset = 'layout', $title = 'Styles & Layout', $instance, $this ); ?>			
+
+			<?php echo Easy_Shuffle_Widget_Fields::build_section_header( $fieldset = 'layout', $title = 'Styles & Layout', $instance, $this ); ?>
 
 			<fieldset data-fieldset-id="layout" class="widgin-settings widgin-fieldset settings-layout">
 

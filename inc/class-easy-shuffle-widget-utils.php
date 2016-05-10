@@ -610,7 +610,7 @@ class Easy_Shuffle_Widget_Utils
 	/**
 	 * Remove a widget added to the eshuflw_shown_items option
 	 *
-	 * Removes the reference to the widget instance and the object displayed on the front end.  
+	 * Removes the reference to the widget instance and the object displayed on the front end.
 	 * This prevents the same item from showing up consecutively.
 	 *
 	 * @uses WordPress get_option()

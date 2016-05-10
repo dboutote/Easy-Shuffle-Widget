@@ -2,12 +2,12 @@
 
 .widgin-section { margin: 5px 0; }
 
-.widgin-section-top { 
+.widgin-section-top {
 	background: #f5f5f5 none repeat scroll 0 0;
 	border: 1px solid #ddd;
 	cursor: pointer;
-	}	
-	
+	}
+
 .widgin-section-top.widgin-active,
 .widgin-section-top:hover {
 	background: #f1f1f1 none repeat scroll 0 0;
@@ -48,7 +48,7 @@ a.widgin-action-indicator:after {
 	margin-right: 10px;
 	padding: 1px 2px 1px 0px;
 	position: relative;
-	right: 0;	
+	right: 0;
 	speak: none;
 	text-align: center;
 	text-decoration: none !important;
@@ -85,7 +85,7 @@ a.widgin-action-indicator:after {
 	margin: 1em 0 13px;
 	overflow-x: auto;
 	overflow-y: hidden !important;
-	width: 100%;				
+	width: 100%;
 }
 
 #customize-controls .widgin-preview-container { max-width: 210px; }
@@ -99,14 +99,14 @@ a.widgin-action-indicator:after {
 }
 
 .widgin-thumbnail-preview .dashicons {
-	color: #ccc; 
-	font-size: inherit; 
-	height: 100%; 
-	width: 100%; 
+	color: #ccc;
+	font-size: inherit;
+	height: 100%;
+	width: 100%;
 }
 
 .widgin-thumbsize-wrap label {
-	display: inline-block; 
+	display: inline-block;
 	min-width: 50px;
 }
 
@@ -125,9 +125,9 @@ a.widgin-action-indicator:after {
 
 .widgin-excerpt { opacity: 0.8; }
 
-.widgin-widget-form .widgin-description { 
-	margin-bottom: 1em !important; 
-	padding-bottom: 0 !important; 
+.widgin-widget-form .widgin-description {
+	margin-bottom: 1em !important;
+	padding-bottom: 0 !important;
 }
 
 .widgin-widget-form .widgin-description b {

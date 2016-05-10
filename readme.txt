@@ -1,6 +1,6 @@
 === Easy Shuffle Widget ===
 Contributors: dbmartin
-Tags: comments, posts, users, widget, comments-widget, posts-widget, users-widget, random 
+Tags: comments, posts, users, widget, comments-widget, posts-widget, users-widget, random
 Requires at least: 4.4
 Tested up to: 4.5.1
 Stable tag: 1.0

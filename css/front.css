@@ -51,7 +51,7 @@
     color: #1a1a1a;
 }
 
-.eshuflw-item-title a:hover, 
+.eshuflw-item-title a:hover,
 .eshuflw-item-title a:focus {
     color: #007acc;
 }
@@ -64,7 +64,7 @@
     font-size: 0.8125rem;
     line-height: 1.61538;
 	hyphens: auto;
-	margin: 0 !important;	
+	margin: 0 !important;
 	position: relative;
 	word-wrap: break-word;
 }
