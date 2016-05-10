@@ -9,9 +9,8 @@
  * @package Easy_Shuffle_Widget
  * @subpackage Easy_Shuffle_Widget_Views
  *
- * @since 1.0
+ * @since 1.0.0
  */
-
 
 class Easy_Shuffle_Widget_Views
 {
@@ -25,7 +24,7 @@ class Easy_Shuffle_Widget_Views
 	 *
 	 * @access public
 	 *
-	 * @since 1.0
+	 * @since 1.0.0
 	 *
 	 * @param object $item_obj  WP Object: comment, post, user.
 	 * @param string $item_type Slug of the item type to retrieve; e.g., 'comment', 'post', 'user'.
@@ -33,7 +32,7 @@ class Easy_Shuffle_Widget_Views
 	 * @param object $widget    WP Object: comment, post, user.
 	 * @param bool   $echo      Flag to echo or return the method's output.
 	 *
-	 * @return string $html Closing tag element for the list item.
+	 * @return string $html HTML markup for the list item.
 	 */
 	public static function item( $item_obj = '', $item_type = 'post', $instance = array(), $widget = '', $echo = true )
 	{
@@ -96,15 +95,15 @@ class Easy_Shuffle_Widget_Views
 	 *
 	 * @access public
 	 *
-	 * @since 1.0
+	 * @since 1.0.0
 	 *
-	 * @param string $item_thumb '<img>` tag for item thumbnail.
+	 * @param string $item_thumb `<img>` tag for item thumbnail.
 	 * @param object $item_obj   WP Object: comment, post, user.
 	 * @param string $item_type  Slug of the item type to retrieve; e.g., 'comment', 'post', 'user'.
 	 * @param array  $instance   Settings for the current widget instance.
 	 * @param bool   $echo       Flag to echo or return the method's output.
 	 *
-	 * @return string $html Item thumbnail section.
+	 * @return string $html HTML markup for the item thumbnail section.
 	 */
 	public static function the_item_thumbnail_div( $item_thumb = '', $item_obj = '', $item_type = 'post', $instance = array(), $echo = true )
 	{
@@ -169,14 +168,14 @@ class Easy_Shuffle_Widget_Views
 	 *
 	 * @access public
 	 *
-	 * @since 1.0
+	 * @since 1.0.0
 	 *
 	 * @param object $item_obj  WP Object: comment, post, user.
 	 * @param string $item_type Slug of the item type to retrieve; e.g., 'comment', 'post', 'user'.
 	 * @param array  $instance  Settings for the current widget instance.
 	 * @param bool   $echo      Flag to echo or return the method's output.
 	 *
-	 * @return string $html Item title section.
+	 * @return string $html HTML markup for the item title.
 	 */
 	public static function the_item_title_div( $item_obj = '', $item_type = 'post', $instance = array(), $echo = true )
 	{
@@ -222,7 +221,7 @@ class Easy_Shuffle_Widget_Views
 	 *
 	 * @access public
 	 *
-	 * @since 1.0
+	 * @since 1.0.0
 	 *
 	 * @return string Plugin attribution.
 	 */

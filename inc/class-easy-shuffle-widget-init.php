@@ -7,8 +7,7 @@
  *
  * @package Easy_Shuffle_Widget
  *
- * @since 1.0
- *
+ * @since 1.0.0
  */
 
 // No direct access
@@ -25,7 +24,7 @@ class Easy_Shuffle_Widget_Init
 	/**
 	 * Full file path to plugin file
 	 *
-	 * @since 1.0
+	 * @since 1.0.0
 	 *
 	 * @var string
 	 */
@@ -35,7 +34,7 @@ class Easy_Shuffle_Widget_Init
 	/**
 	 * URL to plugin
 	 *
-	 * @since 1.0
+	 * @since 1.0.0
 	 *
 	 * @var string
 	 */
@@ -45,7 +44,7 @@ class Easy_Shuffle_Widget_Init
 	/**
 	 * Filesystem directory path to plugin
 	 *
-	 * @since 1.0
+	 * @since 1.0.0
 	 *
 	 * @var string
 	 */
@@ -57,7 +56,7 @@ class Easy_Shuffle_Widget_Init
 	 *
 	 * e.g. "easy-shuffle-widget/easy-shuffle-widget.php"
 	 *
-	 * @since 1.0
+	 * @since 1.0.0
 	 *
 	 * @var string
 	 */
@@ -69,7 +68,7 @@ class Easy_Shuffle_Widget_Init
 	 *
 	 * @access public
 	 *
-	 * @since 1.0
+	 * @since 1.0.0
 	 *
 	 * @param string $file Full file path to calling plugin file
 	 */
@@ -92,7 +91,7 @@ class Easy_Shuffle_Widget_Init
 	 *
 	 * @access public
 	 *
-	 * @since 1.0
+	 * @since 1.0.0
 	 */
 	public function init()
 	{
@@ -101,7 +100,6 @@ class Easy_Shuffle_Widget_Init
 		$this->store_css_option();
 		$this->init_front_styles();
 		$this->init_del_options();
-
 	}
 
 
@@ -112,7 +110,7 @@ class Easy_Shuffle_Widget_Init
 	 *
 	 * @access public
 	 *
-	 * @since 1.0
+	 * @since 1.0.0
 	 */
 	public function init_widget()
 	{
@@ -127,7 +125,7 @@ class Easy_Shuffle_Widget_Init
 	 *
 	 * @access public
 	 *
-	 * @since 1.0
+	 * @since 1.0.0
 	 */
 	public function register_widget()
 	{
@@ -143,9 +141,7 @@ class Easy_Shuffle_Widget_Init
 	 *
 	 * @access public
 	 *
-	 * @since 1.0
-	 *
-	 * @return void
+	 * @since 1.0.0
 	 */
 	public function init_admin_scripts_and_styles()
 	{
@@ -161,11 +157,11 @@ class Easy_Shuffle_Widget_Init
 	/**
 	 * Loads js admin scripts
 	 *
+	 * Note: Only loads on customize.php or widgets.php
+	 *
 	 * @access public
 	 *
-	 * @since 1.0
-	 *
-	 * @return void
+	 * @since 1.0.0
 	 */
 	public function admin_scripts( $hook )
 	{
@@ -180,18 +176,10 @@ class Easy_Shuffle_Widget_Init
 		if( ! $enqueue ){
 			return;
 		};
+		
+		wp_register_script( 'widgins', $this->url . 'js/widgins.js', array( 'jquery' ), '', true );
 
-		wp_enqueue_script( 'eshuflw-admin-scripts', $this->url . 'js/admin.js', array( 'jquery' ), '', true );
-
-		$sample_excerpt = Easy_Shuffle_Widget_Utils::sample_excerpt();
-
-		wp_localize_script(
-			'eshuflw-admin-scripts',
-			'eshuflw_script_vars',
-			array(
-				'sample_excerpt' => sprintf( __('%s'), $sample_excerpt )
-			)
-		);
+		wp_enqueue_script( 'eshuflw-admin-scripts', $this->url . 'js/admin.js', array( 'widgins' ), '', true );
 	}
 
 
@@ -202,9 +190,7 @@ class Easy_Shuffle_Widget_Init
 	 *
 	 * @access public
 	 *
-	 * @since 1.0
-	 *
-	 * @return void
+	 * @since 1.0.0
 	 */
 	public function admin_styles()
 	{
@@ -219,7 +205,7 @@ class Easy_Shuffle_Widget_Init
 	 *
 	 * @access public
 	 *
-	 * @since 1.0
+	 * @since 1.0.0
 	 */
 	public function store_css_option()
 	{
@@ -235,17 +221,17 @@ class Easy_Shuffle_Widget_Init
 	 *       therefore, we have to update the option when the Customizer calls its save hook for this
 	 *       widget: 'customize_save_widget_easy-shuffle-widget'
 	 *
-	 * @uses Easy_Shuffle_Widget_Utils::stick_css()
-	 * @uses Easy_Shuffle_Widget_Utils::unstick_css()
+	 * @see Easy_Shuffle_Widget_Utils::stick_css()
+	 * @see Easy_Shuffle_Widget_Utils::unstick_css()
 	 *
 	 * @access public
 	 *
-	 * @since 1.0
+	 * @since 1.0.0
 	 *
-	 * @param object $widget Widget|WP_Customize_Setting instance; depends on calling filter.
-	 * @param array $instance Current widget settings pre-save
-	 * @param array $new_instance New settings for instance input by the user via WP_Widget::form().
-	 * @param array $old_instance Old settings for instance.
+	 * @param object $widget       Widget|WP_Customize_Setting instance; depends on calling filter.
+	 * @param array  $instance     Current widget settings pre-save
+	 * @param array  $new_instance New settings for instance input by the user via WP_Widget::form().
+	 * @param array  $old_instance Old settings for instance.
 	 */
 	public function maybe_store_css( $widget, $instance = array(), $new_instance = array(), $old_instance = array() )
 	{
@@ -293,7 +279,7 @@ class Easy_Shuffle_Widget_Init
 	 *
 	 * @access public
 	 *
-	 * @since 1.0
+	 * @since 1.0.0
 	 */
 	public function init_front_styles()
 	{
@@ -308,7 +294,7 @@ class Easy_Shuffle_Widget_Init
 	 *
 	 * @access public
 	 *
-	 * @since 1.0
+	 * @since 1.0.0
 	 *
 	 * @return void
 	 */
@@ -340,7 +326,7 @@ class Easy_Shuffle_Widget_Init
 	 *
 	 * @access public
 	 *
-	 * @since 1.0
+	 * @since 1.0.0
 	 */
 	public function init_del_options()
 	{
@@ -353,7 +339,7 @@ class Easy_Shuffle_Widget_Init
 	 *
 	 * @access public
 	 *
-	 * @since 1.0
+	 * @since 1.0.0
 	 *
 	 * @param string $widget_id  ID of the widget marked for deletion.
 	 * @param string $sidebar_id ID of the sidebar the widget was deleted from.

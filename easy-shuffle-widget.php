@@ -9,7 +9,7 @@
  *
  * Plugin Name: Easy Shuffle Widget
  * Plugin URI:  http://darrinb.com/plugins/easy-shuffle-widget
- * Description: Easily display random content, comments, or users in your sidebar.
+ * Description: Easily display random content, comments, or users in your sidebars.
  * Version:     1.0
  * Author:      Darrin Boutote
  * Author URI:  http://darrinb.com
@@ -34,7 +34,7 @@ define( 'EASY_SHUFFLE_WIDGET_FILE', __FILE__ );
 /**
  * Instantiates the main Widget instance
  *
- * @since 1.0
+ * @since 1.0.0
  */
 function _easy_shuffle_widget_init() {
 

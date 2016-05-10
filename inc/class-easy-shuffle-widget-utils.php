@@ -8,7 +8,7 @@
  * @package Easy_Shuffle_Widget
  * @subpackage Easy_Shuffle_Widget_Utils
  *
- * @since 1.0
+ * @since 1.0.0
  */
 
 // No direct access
@@ -24,7 +24,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  *
  * Group of utility methods for use by Easy_Shuffle_Widget
  *
- * @since 1.0
+ * @since 1.0.0
  */
 class Easy_Shuffle_Widget_Utils
 {
@@ -49,7 +49,7 @@ class Easy_Shuffle_Widget_Utils
 	 *
 	 * @access public
 	 *
-	 * @since 1.0
+	 * @since 1.0.0
 	 *
 	 * @return string $path Path to plugin root.
 	 */
@@ -69,7 +69,7 @@ class Easy_Shuffle_Widget_Utils
 	 *
 	 * @access public
 	 *
-	 * @since 1.0
+	 * @since 1.0.0
 	 *
 	 * @param string $directory The name of the requested subdirectory.
 	 *
@@ -96,7 +96,7 @@ class Easy_Shuffle_Widget_Utils
 	 *
 	 * @access public
 	 *
-	 * @since 1.0
+	 * @since 1.0.0
 	 *
 	 * @return string $url URL of plugin root.
 	 */
@@ -116,7 +116,7 @@ class Easy_Shuffle_Widget_Utils
 	 *
 	 * @access public
 	 *
-	 * @since 1.0
+	 * @since 1.0.0
 	 *
 	 * @param string $directory The name of the requested subdirectory.
 	 *
@@ -143,7 +143,7 @@ class Easy_Shuffle_Widget_Utils
 	 *
 	 * @access public
 	 *
-	 * @since 1.0
+	 * @since 1.0.0
 	 *
 	 * @return string $basename Filename of plugin root.
 	 */
@@ -161,7 +161,7 @@ class Easy_Shuffle_Widget_Utils
 	 *
 	 * @access public
 	 *
-	 * @since 1.0
+	 * @since 1.0.0
 	 *
 	 * @return array $defaults The default values for the widget.
 	 */
@@ -191,7 +191,7 @@ class Easy_Shuffle_Widget_Utils
 	 *
 	 * @access public
 	 *
-	 * @since 1.0
+	 * @since 1.0.0
 	 *
 	 * @return string $excerpt Excerpt text.
 	 */
@@ -209,13 +209,11 @@ class Easy_Shuffle_Widget_Utils
 	 * Use 'eshuflw_get_post_type_args' to filter arguments for retrieving post types.
 	 * Use 'eshuflw_allowed_post_types' to filter post types that can be selected in the widget.
 	 *
-	 * @see Easy_Shuffle_Widget_Utils::sanitize_select_array()
-	 *
 	 * @uses WordPress get_post_types()
 	 *
 	 * @access public
 	 *
-	 * @since 1.0
+	 * @since 1.0.0
 	 *
 	 * @return array $types Allowed post types.
 	 */
@@ -244,11 +242,9 @@ class Easy_Shuffle_Widget_Utils
 	 *
 	 * Use 'eshuflw_allowed_item_types' to filter item types that can be selected in the widget.
 	 *
-	 * @see Easy_Shuffle_Widget_Utils::sanitize_select_array()
-	 *
 	 * @access public
 	 *
-	 * @since 1.0
+	 * @since 1.0.0
 	 *
 	 * @return array $types Allowed post types.
 	 */
@@ -265,12 +261,13 @@ class Easy_Shuffle_Widget_Utils
 		$types = array_merge( $_types, (array) $post_types );
 		$types = array_unique( $types );
 
-		// unset the attachment type; we're only allowing images as of 1.0
+		// unset the attachment type; we're only allowing images as of 1.0.0
+		// update 05/10/16: We're not allowing attachments as of 1.0.0 ~db
 		if( ! empty( $types['attachment'] ) ) {
 			unset( $types['attachment'] );
 		}
 
-		// unset the page type; plugins can always add it back in
+		// unset the page type; plugins can always add it back in.
 		if( ! empty( $types['page'] ) ) {
 			unset( $types['page'] );
 		}
@@ -289,7 +286,7 @@ class Easy_Shuffle_Widget_Utils
 	 *
 	 * @access public
 	 *
-	 * @since 1.0
+	 * @since 1.0.0
 	 *
 	 * @param array  $instance Current widget settings.
 	 * @param object $widget   Widget Object.
@@ -307,7 +304,7 @@ class Easy_Shuffle_Widget_Utils
 
 		$_types = array_keys( $_types );
 
-		shuffle( $_types );
+		shuffle( $_types ); // (where the name of the widget comes from!)
 
 		$_type = $_types[0];
 
@@ -325,7 +322,7 @@ class Easy_Shuffle_Widget_Utils
 	 *
 	 * @access public
 	 *
-	 * @since 1.0
+	 * @since 1.0.0
 	 *
 	 * @param string $item_type Slug of the item type to retrieve; e.g., 'comment', 'post', 'user'.
 	 * @param array  $instance  Current widget settings.
@@ -374,7 +371,7 @@ class Easy_Shuffle_Widget_Utils
 	 *
 	 * @access public
 	 *
-	 * @since 1.0
+	 * @since 1.0.0
 	 *
 	 * @param int    $exclude_id The id of the previously shown object.
 	 * @param array  $instance   Current widget settings.
@@ -416,7 +413,7 @@ class Easy_Shuffle_Widget_Utils
 	 *
 	 * @access public
 	 *
-	 * @since 1.0
+	 * @since 1.0.0
 	 *
 	 * @param int    $exclude_id The id of the previously shown object.
 	 * @param array  $instance   Current widget settings.
@@ -458,7 +455,7 @@ class Easy_Shuffle_Widget_Utils
 	 *
 	 * @access public
 	 *
-	 * @since 1.0
+	 * @since 1.0.0
 	 *
 	 * @param string $post_type  The post type.
 	 * @param int    $exclude_id The id of the previously shown object.
@@ -514,12 +511,12 @@ class Easy_Shuffle_Widget_Utils
 	 *
 	 * @access public
 	 *
-	 * @since 1.0
+	 * @since 1.0.0
 	 *
-	 * @param object $item_obj WP Object: comment, post, user.
+	 * @param object $item_obj  WP Object: comment, post, user.
 	 * @param string $item_type Slug of the item type to retrieve; e.g., 'comment', 'post', 'user'.
 	 *
-	 * @return in $item_id The ID of the object.
+	 * @return int $item_id The ID of the object.
 	 */
 	public static function get_item_obj_id( $item_obj, $item_type )
 	{
@@ -547,7 +544,7 @@ class Easy_Shuffle_Widget_Utils
 	 *
 	 * @access public
 	 *
-	 * @since 1.0
+	 * @since 1.0.0
 	 *
 	 * @param array  $instance Current widget settings.
 	 * @param object $widget   Widget Object.
@@ -591,7 +588,7 @@ class Easy_Shuffle_Widget_Utils
 	 *
 	 * @access public
 	 *
-	 * @since 1.0
+	 * @since 1.0.0
 	 *
 	 * @param string $widget_id Widget instance ID.
 	 * @param array  $shown_item The item object displayed.
@@ -613,15 +610,15 @@ class Easy_Shuffle_Widget_Utils
 	/**
 	 * Remove a widget added to the eshuflw_shown_items option
 	 *
-	 * Removes the reference to the widget instance and the object displayed on the front end.  This
-	 * prevents the same item from showing up consecutively.
+	 * Removes the reference to the widget instance and the object displayed on the front end.  
+	 * This prevents the same item from showing up consecutively.
 	 *
 	 * @uses WordPress get_option()
 	 * @uses WordPress update_option()
 	 *
 	 * @access public
 	 *
-	 * @since 1.0
+	 * @since 1.0.0
 	 *
 	 * @param string $widget_id Widget instance ID.
 	 * @param array $shown_item The item object displayed.
@@ -656,7 +653,7 @@ class Easy_Shuffle_Widget_Utils
 	 *
 	 * @access public
 	 *
-	 * @since 1.0
+	 * @since 1.0.0
 	 *
 	 * @param string $widget_id Widget instance ID.
 	 */
@@ -688,7 +685,7 @@ class Easy_Shuffle_Widget_Utils
 	 *
 	 * @access public
 	 *
-	 * @since 1.0
+	 * @since 1.0.0
 	 *
 	 * @param string $widget_id Widget instance ID.
 	 */
@@ -719,13 +716,13 @@ class Easy_Shuffle_Widget_Utils
 	/**
 	 * Prints link to default widget stylesheet
 	 *
-	 * Actual stylesheet is enqueued if the user selects to use default styles
+	 * Actual stylesheet is enqueued if the user selects to use default styles.
 	 *
 	 * @see Easy_Shuffle_Widget::widget()
 	 *
 	 * @access public
 	 *
-	 * @since 1.0
+	 * @since 1.0.0
 	 *
 	 * @param array  $instance Current widget settings.
 	 * @param object $widget   Widget Object.
@@ -756,7 +753,7 @@ class Easy_Shuffle_Widget_Utils
 	 *
 	 * @access public
 	 *
-	 * @since 1.0
+	 * @since 1.0.0
 	 *
 	 * @param array  $instance  Widget instance.
 	 * @param string $item_type Slug of the item type to retrieve; e.g., 'comment', 'post', 'user'.
@@ -793,7 +790,7 @@ class Easy_Shuffle_Widget_Utils
 	 *
 	 * @access public
 	 *
-	 * @since 1.0
+	 * @since 1.0.0
 	 *
 	 * @param array  $instance  Widget instance.
 	 * @param string $item_type Slug of the item type to retrieve; e.g., 'comment', 'post', 'user'.
@@ -830,13 +827,13 @@ class Easy_Shuffle_Widget_Utils
 	 * Use 'eshuflw_excerpt_length' to modify the text length before output.
 	 * Use 'eshuflw_excerpt_more' to modify the readmore text before output.
 	 *
-	 * Uses WordPress strip_shortcodes()
-	 * Uses WordPress wp_html_excerpt()
-	 * Uses WordPress wp_trim_words()
+	 * @uses WordPress strip_shortcodes()
+	 * @uses WordPress wp_html_excerpt()
+	 * @uses WordPress wp_trim_words()
 	 *
 	 * @access public
 	 *
-	 * @since 1.0
+	 * @since 1.0.0
 	 *
 	 * @param array  $instance  Settings for the current Categories widget instance.
 	 * @param string $item_type Slug of the item type to retrieve; e.g., 'comment', 'post', 'user'.
@@ -891,10 +888,10 @@ class Easy_Shuffle_Widget_Utils
 	 *
 	 * @access public
 	 *
-	 * @since 1.0
+	 * @since 1.0.0
 	 *
-	 * @param object $item_obj WP Object: comment, post, user.
 	 * @param string $item_type Slug of the item type to retrieve; e.g., 'comment', 'post', 'user'.
+	 * @param object $item_obj  WP Object: comment, post, user.
 	 *
 	 * @return in $item_id The ID of the object.
 	 */
@@ -933,13 +930,13 @@ class Easy_Shuffle_Widget_Utils
 	 *
 	 * @access public
 	 *
-	 * @since 1.0
+	 * @since 1.0.0
 	 *
 	 * @param array  $instance  Widget instance.
 	 * @param string $item_type Slug of the item type to retrieve; e.g., 'comment', 'post', 'user'.
 	 * @param object $item_obj  WP Object: comment, post, user.
 	 *
-	 * @return string $src Image element of either: post thumb, author avatar, commenter avatar.
+	 * @return string $src `<img>` tag of either: post thumb, author avatar, commenter avatar.
 	 */
 	public static function get_item_image( $instance = array(), $item_type = 'post', $item_obj = '' )
 	{
@@ -965,7 +962,7 @@ class Easy_Shuffle_Widget_Utils
 	 *
 	 * @access public
 	 *
-	 * @since 1.0
+	 * @since 1.0.0
 	 *
 	 * @param string $item_type Slug of the item type to retrieve; e.g., 'comment', 'post', 'user'.
 	 * @param object $item_obj  WP Object: comment, post, user.
@@ -1032,7 +1029,7 @@ class Easy_Shuffle_Widget_Utils
 	 *
 	 * @access public
 	 *
-	 * @since 1.0
+	 * @since 1.0.0
 	 *
 	 * @return string Name of image size.
 	 *         array  Image size settings; name, width, height, crop.
@@ -1063,11 +1060,11 @@ class Easy_Shuffle_Widget_Utils
 	 *
 	 * @global $_wp_additional_image_sizes
 	 *
-	 * @uses get_intermediate_image_sizes()
+	 * @uses WordPress get_intermediate_image_sizes()
 	 *
 	 * @access public
 	 *
-	 * @since 1.0
+	 * @since 1.0.0
 	 *
 	 * @return array $_sizes Filtered array of image sizes.
 	 */
@@ -1118,7 +1115,7 @@ class Easy_Shuffle_Widget_Utils
 	 *
 	 * @access public
 	 *
-	 * @since 1.0
+	 * @since 1.0.0
 	 *
 	 * @param array $options Values used for select options
 	 * @param bool  $sort    Flag to sort the values alphabetically.
@@ -1132,7 +1129,7 @@ class Easy_Shuffle_Widget_Utils
 		// Clean the values (since it can be filtered by other plugins)
 		$options = array_map( 'esc_html', $options );
 
-		// Flip to clean the keys (used as <option> values in <select> field on form)
+		// Flip to clean the keys (used as `<option>` values in `<select>` field on form)
 		$options = array_flip( $options );
 		$options = array_map( 'sanitize_key', $options );
 

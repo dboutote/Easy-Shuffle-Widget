@@ -9,7 +9,7 @@
  *
  * @package Easy_Shuffle_Widget
  *
- * @since 1.0
+ * @since 1.0.0
  */
 ?>
 <div class="easy-shuffle-widget-form">

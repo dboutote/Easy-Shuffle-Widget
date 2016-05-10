@@ -118,6 +118,11 @@ a.widgin-action-indicator:after {
 	padding: 6px;
 }
 
+.widgin-excerpt-sample {
+	display: none;
+	speak: none;
+}
+
 .widgin-excerpt { opacity: 0.8; }
 
 .widgin-widget-form .widgin-description { 

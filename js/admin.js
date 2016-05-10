@@ -2,118 +2,12 @@
  * Plugin js file.
  *
  * @package Easy_Shuffle_Widget
- * @since 1.0
+ * @since 1.0.0
  */
-if( "undefined" == typeof jQuery )throw new Error( "Easy Shuffle Widget requires jQuery" );
 
+/* global widgin, jQuery */
 
-( function( widgin, $, undefined ) {
-
-
-	/**
-	 * Closes accordion section in widget form
-	 *
-	 * @since 1.0
-	 */
-	widgin.close_accordions = function ( widget ){
-		var sections = widget.find( '.widgin-section' );
-		var first_section = sections.first();
-
-		first_section.addClass( 'expanded' ).find( '.widgin-section-top' ).addClass( 'widgin-active' );
-		first_section.siblings( '.widgin-section' ).find( '.widgin-settings' ).hide();
-	}
-
-
-	/**
-	 * Invokes accordion closing when widget form is saved
-	 *
-	 * @since 1.0
-	 */
-	widgin.accordion_form_update = function( event, widget ){
-		widgin.close_accordions( widget );
-	}
-
-
-	/**
-	 * Updates thumbnail preview
-	 *
-	 * @since 1.0
-	 */
-	widgin.update_thumbnail_preview = function ( widget ){
-
-		var preview_div = widget.find( '.widgin-thumbnail-preview' );
-
-		if( ! preview_div.length ) {
-			return;
-		}
-
-		var thumbsize_wrap = preview_div.closest( '.widgin-thumbsize-wrap' );
-		var preview_image = $( '.widgin-preview-image', preview_div );
-		var width         = parseInt ( ( $.trim( $( '.widgin-thumb-width', thumbsize_wrap ).val() ) * 1 ) + 0 );
-		var height        = parseInt ( ( $.trim( $( '.widgin-thumb-height', thumbsize_wrap ).val() ) * 1 ) + 0 );
-
-		preview_div.css( {
-			'height' : height + 'px',
-			'width'  : width  + 'px'
-		} );
-		preview_image.css( { 'font-size' : height + 'px' } );
-
-		return;
-	};
-
-
-	/**
-	 * Invokes thumbnail update when widget form is saved
-	 *
-	 * @since 1.0
-	 */
-	widgin.thumbnail_form_update = function ( event, widget ){
-		widgin.update_thumbnail_preview( widget );
-	}
-
-
-	/**
-	 * Updates excerpt preview
-	 *
-	 * @since 1.0
-	 */
-	widgin.update_excerpt_preview = function ( widget ) {
-
-		var preview_div = widget.find( '.widgin-excerpt-preview' );
-
-		if( ! preview_div.length ) {
-			return;
-		}
-
-		var excerpt = $( '.widgin-excerpt', preview_div );
-		var field   = widget.find( '.widgin-excerpt-length' );
-		var size    = parseInt ( ( $.trim( field.val() ) * 1 ) + 0 );
-		var words   = eshuflw_script_vars.sample_excerpt.match(/\S+/g).length;
-		var trimmed = '';
-
-		if ( words > size ) {
-			trimmed = eshuflw_script_vars.sample_excerpt.split(/\s+/, size).join(" ");
-		} else {
-			trimmed = eshuflw_script_vars.sample_excerpt;
-		}
-
-		excerpt.html( trimmed + "&hellip;" );
-
-	}
-
-
-	/**
-	 * Invokes excerpt update when widget form is saved
-	 *
-	 * @since 1.0
-	 */
-	widgin.excerpt_form_update = function ( event, widget ){
-		widgin.update_excerpt_preview( widget );
-	}
-
-
-}( window.widgin = window.widgin || {}, jQuery ) );
-
+if ( "undefined" === typeof widgin ) { throw new Error( "Easy Shuffle Widget requires Widgins JS" ); }
 
 ( function ( $ ) {
 
@@ -123,9 +17,9 @@ if( "undefined" == typeof jQuery )throw new Error( "Easy Shuffle Widget requires
 	/**
 	 * Accordion functions
 	 *
-	 * @since 1.0
+	 * @since 1.0.0
 	 */
-	$( document ).on( 'widget-added widget-updated', widgin.accordion_form_update );
+	$( document ).on( 'widget-added widget-updated', widgin.accordion_form_update );	
 
 	$( '#widgets-right .widget:has( .widgin-widget-form )' ).each( function () {
 		widgin.close_accordions( $( this ) );
@@ -136,7 +30,7 @@ if( "undefined" == typeof jQuery )throw new Error( "Easy Shuffle Widget requires
 		var section = header.closest( '.widgin-section' );
 		var fieldset_id = header.data( 'fieldset' );
 		var target_fieldset = $( 'fieldset[data-fieldset-id="' + fieldset_id + '"]', section );
-		var content = section.find( '.widgin-settings' )
+		var content = section.find( '.widgin-settings' );
 
 		header.toggleClass( 'widgin-active' );
 		target_fieldset.addClass( 'targeted');
@@ -149,7 +43,7 @@ if( "undefined" == typeof jQuery )throw new Error( "Easy Shuffle Widget requires
 	/**
 	 * Preview thumbnail size
 	 *
-	 * @since 1.0
+	 * @since 1.0.0
 	 */
 
 	$( document ).on( 'widget-added widget-updated', widgin.thumbnail_form_update );
@@ -178,7 +72,7 @@ if( "undefined" == typeof jQuery )throw new Error( "Easy Shuffle Widget requires
 	/**
 	 * Preview excerpt size
 	 *
-	 * @since 1.0
+	 * @since 1.0.0
 	 */
 
 	$( document ).on( 'widget-added widget-updated', widgin.excerpt_form_update );

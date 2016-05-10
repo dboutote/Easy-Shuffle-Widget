@@ -9,7 +9,7 @@
 * @package Easy_Shuffle_Widget
 * @subpackage Easy_Shuffle_Widget_Fields
 *
-* @since 1.0
+* @since 1.0.0
 */
 
 class Easy_Shuffle_Widget_Fields
@@ -23,7 +23,7 @@ class Easy_Shuffle_Widget_Fields
 	 *
 	 * @access public
 	 *
-	 * @since 1.0
+	 * @since 1.0.0
 	 *
 	 * @param string $fieldset Name (slug) of fieldset.
 	 * @param array  $fields   Fields to load.
@@ -65,14 +65,14 @@ class Easy_Shuffle_Widget_Fields
 
 		echo $fieldset;
 	}
-	
-	
+
+
 	/**
 	 * Build section header for widget form
 	 *
 	 * @access public
 	 *
-	 * @since 1.0
+	 * @since 1.0.0
 	 *
 	 * @param string $fieldset Slug of fieldset.
 	 * @param array  $title    Name of fieldset.
@@ -102,13 +102,12 @@ class Easy_Shuffle_Widget_Fields
 	}
 
 
-
 	/**
 	 * Builds form field: title
 	 *
 	 * @access public
 	 *
-	 * @since 1.0
+	 * @since 1.0.0
 	 *
 	 * @param array  $instance Current settings.
 	 * @param object $widget   Widget object.
@@ -135,7 +134,7 @@ class Easy_Shuffle_Widget_Fields
 	 *
 	 * @access public
 	 *
-	 * @since 1.0
+	 * @since 1.0.0
 	 *
 	 * @param array  $instance Current settings.
 	 * @param object $widget   Widget object.
@@ -174,7 +173,7 @@ class Easy_Shuffle_Widget_Fields
 	 *
 	 * @access public
 	 *
-	 * @since 1.0
+	 * @since 1.0.0
 	 *
 	 * @param array  $instance Current settings.
 	 * @param object $widget   Widget object.
@@ -196,14 +195,14 @@ class Easy_Shuffle_Widget_Fields
 
 		return $field;
 	}
-	
-	
+
+
 	/**
 	 * Builds form fields: thumb_size_w / thumb_size_h
 	 *
 	 * @access public
 	 *
-	 * @since 1.0
+	 * @since 1.0.0
 	 *
 	 * @param array  $instance Current settings.
 	 * @param object $widget   Widget object.
@@ -216,7 +215,7 @@ class Easy_Shuffle_Widget_Fields
 
 			<p>
 				<label><?php _e( 'Set Custom Size:', 'advanced-posts-widget' ); ?></label><br />
-				
+
 				<label for="<?php echo $widget->get_field_id( 'thumb_size_w' ); ?>">
 					<?php _e( 'Width:', 'advanced-posts-widget' ); ?>
 				</label>
@@ -246,14 +245,14 @@ class Easy_Shuffle_Widget_Fields
 
 		return $field;
 	}
-	
-	
+
+
 	/**
 	 * Builds form field: excerpt_length
 	 *
 	 * @access public
 	 *
-	 * @since 1.0
+	 * @since 1.0.0
 	 *
 	 * @param array  $instance Current settings.
 	 * @param object $widget   Widget object.
@@ -262,42 +261,42 @@ class Easy_Shuffle_Widget_Fields
 	{
 		ob_start();
 		?>
-		
+
 		<div class="widgin-excerptsize-wrap">
-		
+
 			<p>
 				<label for="<?php echo $widget->get_field_id( 'excerpt_length' ); ?>">
 					<?php _e( 'Excerpt Length:', 'easy-shuffle-widget' ); ?>
 				</label>
 				<input class="widefat widgin-excerpt-length" id="<?php echo $widget->get_field_id( 'excerpt_length' ); ?>" name="<?php echo $widget->get_field_name( 'excerpt_length' ); ?>" type="number" step="1" min="0" value="<?php echo absint( $instance['excerpt_length'] ); ?>" />
 			</p>
-			
+
 			<p>
 				<?php _e( 'Preview Excerpt Size:', 'easy-shuffle-widget' ); ?><br />
-				
+
 				<span class="widgin-preview-container">
 					<span class="widgin-excerpt-preview">
 						<span class="widgin-excerpt"><?php echo wp_trim_words( Easy_Shuffle_Widget_Utils::sample_excerpt(), 15, '&hellip;' ); ?></span>
-					</span>				
+						<span class="widgin-excerpt-sample" aria-hidden="true" role="presentation"><?php echo Easy_Shuffle_Widget_Utils::sample_excerpt(); ?></span>
+					</span>
 				</span>
 			</p>
-		
-		</div>		
+
+		</div>
 
 		<?php
 		$field = ob_get_clean();
 
 		return $field;
-	}	
-	
-	
-	
+	}
+
+
 	/**
 	 * Builds form field: css_default
 	 *
 	 * @access public
 	 *
-	 * @since 1.0
+	 * @since 1.0.0
 	 *
 	 * @param array  $instance Current settings.
 	 * @param object $widget   Widget object.

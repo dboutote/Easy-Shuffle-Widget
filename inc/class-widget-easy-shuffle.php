@@ -2,12 +2,12 @@
 /**
  * Widget_Easy_Shuffle Class
  *
- * Adds a Posts widget with extended functionality
+ * Adds a widget to randomly display content.
  *
  * @package Easy_Shuffle_Widget
  * @subpackage Widget_Easy_Shuffle
  *
- * @since 1.0
+ * @since 1.0.0
  */
 
 // No direct access
@@ -21,7 +21,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * Core class used to implement a Posts widget.
  *
- * @since 1.0
+ * @since 1.0.0
  *
  * @see WP_Widget
  */
@@ -34,7 +34,7 @@ class Widget_Easy_Shuffle extends WP_Widget
 	 *
 	 * @access public
 	 *
-	 * @since 1.0
+	 * @since 1.0.0
 	 */
 	public function __construct()
 	{
@@ -60,11 +60,11 @@ class Widget_Easy_Shuffle extends WP_Widget
 	/**
 	 * Outputs the content for the current widget instance.
 	 *
-	 * Use 'widget_title' to filter the widget title.
+	 * Use 'eshuflw_widget_title' to filter the widget title.
 	 *
 	 * @access public
 	 *
-	 * @since 1.0
+	 * @since 1.0.0
 	 *
 	 * @param array $args     Display arguments including 'before_title', 'after_title',
 	 *                        'before_widget', and 'after_widget'.
@@ -128,7 +128,7 @@ class Widget_Easy_Shuffle extends WP_Widget
 		 *
 		 * Actual stylesheet is enqueued if the user selects to use default styles
 		 *
-		 * @since 1.0
+		 * @since 1.0.0
 		 */
 		if( ! empty( $instance['css_default'] ) && is_customize_preview() ) {
 			echo Easy_Shuffle_Widget_Utils::css_preview( $instance, $this );
@@ -165,7 +165,7 @@ class Widget_Easy_Shuffle extends WP_Widget
 	 *
 	 * @access public
 	 *
-	 * @since 1.0
+	 * @since 1.0.0
 	 *
 	 * @param array $new_instance New settings for this instance as input by the user via
 	 *                            WP_Widget::form().
@@ -216,7 +216,7 @@ class Widget_Easy_Shuffle extends WP_Widget
 	 *
 	 * @access public
 	 *
-	 * @since 1.0
+	 * @since 1.0.0
 	 *
 	 * @param array $instance Current settings.
 	 */
