@@ -194,7 +194,20 @@ class Easy_Shuffle_Widget_Init
 	 */
 	public function admin_styles()
 	{
-		wp_enqueue_style( 'eshuflw-admin-styles', $this->url . 'css/admin.css', array(), null );
+		wp_enqueue_style(
+			'widgins',
+			$this->url . 'css/widgins.css',
+			array(),
+			'1.0.0',
+			'all'
+		);
+		wp_enqueue_style(
+			'eshuflw-admin-styles',
+			$this->url . 'css/admin.css',
+			array( 'widgins' ),
+			'1.0.0',
+			'all'
+		);
 	}
 
 
