@@ -177,9 +177,9 @@ class Easy_Shuffle_Widget_Init
 			return;
 		};
 
-		wp_register_script( 'widgins', $this->url . 'js/widgins.js', array( 'jquery' ), '', true );
+		wp_enqueue_script( 'widgins', $this->url . 'js/widgins.js', array( 'jquery' ), '', true );
 
-		wp_enqueue_script( 'eshuflw-admin-scripts', $this->url . 'js/admin.js', array( 'widgins' ), '', true );
+		#wp_enqueue_script( 'eshuflw-admin-scripts', $this->url . 'js/admin.js', array( 'widgins' ), '', true );
 	}
 
 
